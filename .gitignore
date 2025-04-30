@@ -7,3 +7,5 @@ venv/
 .env
 node_modules/
 *.log
+*.xlsx
+sec-edgar-filings/

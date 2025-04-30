@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    color: #555;
+    margin-top: 20px;
+}
+
+#input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#user-input {
+    padding: 10px;
+    font-size: 16px;
+    width: 60%;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submit-button:hover {
+    background-color: #0056b3;
+}
+
+.loading {
+    text-align: center;
+    font-size: 18px;
+    color: #007bff;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f7f7f7;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+}
+
+#investment-score {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#file-saved {
+    font-size: 16px;
+    color: #007bff;
+}
+
+    /* New loading spinner animation */
+    #loading {
+        display: none;
+        margin: 20px 0;
+        font-size: 18px;
+        color: #555;
+        animation: pulse 1s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { opacity: 0.3; }
+        50% { opacity: 1; }
+        100% { opacity: 0.3; }
+    }
+  
+      /* Error message styling */
+      #error-message {
+        display: none;
+        color: red;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      /* Smooth fade-in effect for the analysis content */
+      #analysis-content {
+        opacity: 0; /* Start hidden */
+        visibility: hidden; /* Make sure it's not interacting with layout when invisible */
+        transition: opacity 0.6s ease, visibility 0s linear 0.6s; /* Delay visibility to match opacity */
+    }
+    
+    #analysis-content.visible {
+        opacity: 1; /* Fade in */
+        visibility: visible; /* Ensure it's visible when opacity reaches 1 */
+    }
+    
+    #analysis-content.hidden {
+        display: none; /* Ensure it's hidden when the class is added */
+    }
