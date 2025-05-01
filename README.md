@@ -50,21 +50,13 @@ From the dropdown menu in the UI:
 
 ---
 
-## 🧰 How to Diff with GitHub Repo
 
-Run the following to compare this project to your GitHub version:
-
-```bash
-diff -rq ~/mcp-investment-agent /mnt/data/mcp-investment-agent-extracted/home/jp/mcp-investment-agent
-```
-
-Or for a detailed output:
-
-```bash
-diff -ru ~/mcp-investment-agent /mnt/data/mcp-investment-agent-extracted/home/jp/mcp-investment-agent | less
-```
-
----
+## 🚀 Setup Instructions
+1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/investment-agent.git
+cd investment-agent
+pip install -r requirements.txt
+python app.py
 
 ## 📜 License
 
