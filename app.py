@@ -1,46 +1,42 @@
-import math
 from flask import Flask, render_template, request, jsonify
-import sys
-import os
-
-# Add the directory containing agent_runner.py to sys.path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 from router.router_runner import router
+import math
 
 app = Flask(__name__)
 
-# Sanitize data to handle NaN values
 def sanitize_data(data):
     if isinstance(data, dict):
-        for key, value in data.items():
-            data[key] = sanitize_data(value)  # Recursively sanitize
+        return {k: sanitize_data(v) for k, v in data.items()}
     elif isinstance(data, list):
-        for i in range(len(data)):
-            data[i] = sanitize_data(data[i])  # Recursively sanitize
+        return [sanitize_data(i) for i in data]
     elif isinstance(data, float) and (math.isnan(data) or data is None):
-        return 'N/A'  # Replace NaN with 'N/A'
+        return 'N/A'
     return data
 
-@app.route('/')
+@app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template("index.html")
 
 @app.route('/ask', methods=['POST'])
 def ask():
-    # Get the user input from the POST request (JSON body)
-    user_input = request.json.get('input')
+    data = request.get_json()
+    user_input = data.get("input")
+    model_override = data.get("model_override")  # ✅ Capture override
 
     if not user_input:
         return jsonify({"error": "Please provide an input."}), 400
-    
-    # Call the agent's response
-    output = router.invoke({"action": "respond", "input": user_input})
 
-    # Sanitize the response to replace NaN with 'N/A'
-    sanitized_output = sanitize_data(output)
+    print(f"📨 Received input: {user_input}")
+    print(f"🎛️ Override mode: {model_override}")
 
-    return jsonify({"response": sanitized_output})
+    # Route to agent
+    result = router.invoke({
+        "action": "respond",
+        "input": user_input,
+        "model_override": model_override
+    })
+
+    return jsonify({"response": sanitize_data(result)})
 
 if __name__ == "__main__":
     app.run(debug=True)

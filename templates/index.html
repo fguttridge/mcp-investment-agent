@@ -1,68 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Investment Analysis Report</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
   <div class="container">
-    <h1>Investment Analysis: <span id="ticker">Loading...</span></h1>
+    <h1>💼 Investment Analysis Agent</h1>
 
-    <div id="loading" class="loading">Loading...</div>
-
+    <!-- Input Section -->
     <div id="input-container">
-      <input type="text" id="user-input" placeholder="Enter your query..." />
+      <input type="text" id="user-input" placeholder="Ask about NVDA, AAPL, financial data, etc..." />
+      <select id="model-select">
+        <option value="auto">🤖 Auto (Agent decides)</option>
+        <option value="openai">🔓 OpenAI</option>
+        <option value="gemini">🧠 Gemini</option>
+      </select>
       <button id="submit-button" onclick="submitQuery()">Submit</button>
-      <div id="error-message"></div>
+      <div id="error-message" class="error"></div>
     </div>
 
-    <!-- Hidden div for generic responses -->
-    <div id="generic-response" class="hidden" style="margin-top: 20px; white-space: pre-wrap; font-family: monospace; background: #f9f9f9; padding: 15px; border-radius: 8px;"></div>
-
-    <div id="analysis-content" class="hidden">
-      <div class="section">
-        <h2>📊 Financial Summary</h2>
-        <table id="financial-summary-table">
-          <thead>
-            <tr><th>Metric</th><th>Value</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Revenue</td><td id="revenue"></td></tr>
-            <tr><td>EPS</td><td id="eps"></td></tr>
-            <tr><td>Free Cash Flow</td><td id="free-cash-flow"></td></tr>
-            <tr><td>EBITDA</td><td id="ebitda"></td></tr>
-            <tr><td>ROE</td><td id="roe"></td></tr>
-            <tr><td>P/E Ratio</td><td id="pe-ratio"></td></tr>
-            <tr><td>Debt-to-Equity Ratio</td><td id="debt-to-equity"></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="section">
-        <h2>📈 Bullish Sentiment</h2>
-        <p id="bullish-text"></p>
-      </div>
-
-      <div class="section">
-        <h2>📉 Bearish Sentiment</h2>
-        <p id="bearish-text"></p>
-      </div>
-
-      <div class="section">
-        <h2>📑 Investment Recommendation</h2>
-        <p id="recommendation-text"></p>
-        <div id="investment-score">
-          <strong>Investment Score (out of 10):</strong> 
-          <span id="investment-score-value">6</span>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>📁 Report Download</h2>
-        <p id="file-saved"></p>
-      </div>
+    <!-- Response Area -->
+    <div id="response" style="margin-top: 2rem; padding: 1rem; border-radius: 8px; background-color: #f5f5f5;">
+      <!-- JS populates this -->
     </div>
   </div>
 
