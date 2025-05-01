@@ -28,15 +28,18 @@ def ask():
 
     print(f"📨 Received input: {user_input}")
     print(f"🎛️ Override mode: {model_override}")
-
-    # Route to agent
-    result = router.invoke({
-        "action": "respond",
-        "input": user_input,
-        "model_override": model_override
-    })
-
-    return jsonify({"response": sanitize_data(result)})
+    try:
+        result = router.invoke({
+            "action": "respond",
+            "input": user_input,
+            "model_override": model_override
+        })
+        print(f"✅ Final Output: {result}")
+        return jsonify({"response": sanitize_data(result)})
+    
+    except Exception as e:
+        print(f"❌ Error during processing: {e}")
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
